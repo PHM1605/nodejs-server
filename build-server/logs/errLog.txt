@@ -1,1 +1,5 @@
 20240822	13:20:19	582fe967-3a87-4eb3-b31c-270490e65ea1	Error: Not allowed by CORS
+20240823	10:28:57	ca8e9d2f-bc03-4da4-9d6e-54a5d66a5a7f	ReferenceError: cookie is not defined
+20240823	10:29:27	0a477f46-c4f2-410d-b794-27a7636b2e07	ReferenceError: cookie is not defined
+20240823	10:29:28	33de210b-3bef-46a2-8f2b-76e9e444217d	ReferenceError: cookie is not defined
+20240823	15:19:49	eeea537d-f2d3-419e-b06c-0ff9497a1bc2	SyntaxError: Expected ',' or '}' after property value in JSON at position 9

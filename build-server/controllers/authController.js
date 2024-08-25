@@ -11,7 +11,7 @@ const handleLogin = async (req, res) => {
   // evaluate password
   const match = await bcrypt.compare(pwd, foundUser.password);
   if (match) {
-    const roles = Object.values(foundUser.roles);
+    const roles = Object.values(foundUser.roles).filter(Boolean); // filter(Boolean) to remove all the "null"
     // create JWTs
     const accessToken = jwt.sign(
       {
@@ -36,7 +36,7 @@ const handleLogin = async (req, res) => {
     // NOTE: because of bug of Thunderclient, when set "secure: true" we won't see cookie locally => unauthorized. But turn this on in other cases or in prd
     //res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite: 'None', secure: true});
     res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite: 'None'});
-    res.json({accessToken});
+    res.json({roles, accessToken});
   } else {
     res.sendStatus(401); // Unauthorized
   }

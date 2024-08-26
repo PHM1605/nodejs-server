@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
-  console.log(req.cookies)
+  console.log("refreshToken in cookie:", req.cookies)
   // check if cookie has a "jwt" property i.e. a refreshToken set in "authController.js" file
   if(!cookies?.jwt) return res.sendStatus(401);
   console.log(cookies.jwt);
@@ -24,9 +24,9 @@ const handleRefreshToken = async (req, res) => {
           }
         },
         process.env.ACCESS_TOKEN_SECRET,
-        {expiresIn: '30s'}
+        {expiresIn: '10s'}
       );
-      res.json({accessToken})
+      res.json({roles, accessToken})
     }
   )
 }

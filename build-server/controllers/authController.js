@@ -21,7 +21,7 @@ const handleLogin = async (req, res) => {
         }
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '120s' }
+      { expiresIn: '10s' }
     );
     const refreshToken = jwt.sign(
       {"username": foundUser.username},
@@ -34,8 +34,8 @@ const handleLogin = async (req, res) => {
     console.log(result);
     console.log(roles);
     // NOTE: because of bug of Thunderclient, when set "secure: true" we won't see cookie locally => unauthorized. But turn this on in other cases or in prd
-    //res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite: 'None', secure: true});
-    res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite: 'None'});
+    res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite: 'None', secure: true});
+    //res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite: 'None'});
     res.json({roles, accessToken});
   } else {
     res.sendStatus(401); // Unauthorized
